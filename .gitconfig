@@ -1,28 +1,34 @@
-# This is Git's per-user configuration file.
 [color]
   ui = true
 [user]
-	name = dannd
+	name = dan.nguyen
 	email = dannd496@gmail.com
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
-[mergetool]
-  prompt = false
-[mergetool "mvimdiff"]
-  cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
-  keepbackup=false
-[merge]
-  summary = true
-  verbosity = 1
-  tool = mvimdiff
-[apply]
-  whitespace = nowarn
-[branch]
-  autosetupmerge = true
-[push]
-  # 'git push' will push the current branch to its tracking branch
-  # the usual default is to push all branches
-  default = upstream
 [core]
 	autocrlf = false
-  editor = vim
+	ignorecase = false
+  editor = nvim
+  pager = delta --dark --paging=never
+[push]
+  default = upstream
+[pull]
+	rebase = false
+[branch]
+	sort = -committerdate
+[diff]
+	renames = copies
+[delta "tokyonight"]
+  minus-style                   = syntax "#3f2d3d"
+  minus-non-emph-style          = syntax "#3f2d3d"
+  minus-emph-style              = syntax "#763842"
+  minus-empty-line-marker-style = syntax "#3f2d3d"
+  line-numbers-minus-style      = "#c25d64"
+  plus-style                    = syntax "#283b4d"
+  plus-non-emph-style           = syntax "#283b4d"
+  plus-emph-style               = syntax "#316172"
+  plus-empty-line-marker-style  = syntax "#283b4d"
+  line-numbers-plus-style       = "#399a96"
+  line-numbers-zero-style       = "#3b4261"
+[delta]
+  features = tokyonight

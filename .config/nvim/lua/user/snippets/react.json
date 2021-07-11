@@ -1,0 +1,129 @@
+{
+  "Typescript React Arrow Function": {
+    "prefix": "tsrafc",
+    "body": [
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = ({}: Props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "TS React Arrow Function Component"
+  },
+  "React Arrow Function": {
+    "prefix": "rafc",
+    "body": [
+      "import React from 'react'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "React Arrow Function Component"
+  },
+  "Typescript React Function": {
+    "prefix": "tsrfc",
+    "body": [
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "function ${1:${TM_FILENAME_BASE}}({}: Props) {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "TS React Function Component"
+  },
+  "React Function": {
+    "prefix": "rfc",
+    "body": [
+      "import React from 'react'",
+      "",
+      "function ${1:${TM_FILENAME_BASE}}({}) {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "React Function Component"
+  },
+  "useState": {
+    "prefix": "us",
+    "body": "const [$1, $2] = useState($3)$0",
+    "description": "React useState"
+  },
+  "useRef": {
+    "prefix": "ur",
+    "body": ["const $1 = useRef($2)$0"],
+    "description": "React useRef"
+  },
+  "useEffect": {
+    "prefix": "ue",
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "}, [$2])",
+      ""
+    ],
+    "description": "React useEffect"
+  },
+  "useEffect with return": {
+    "prefix": "uer",
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "",
+      "  return () => {",
+      "    $2",
+      "  }",
+      "}, [$3])",
+      ""
+    ],
+    "description": "React useEffect with return statement"
+  },
+  "useCallback": {
+    "prefix": "ucb",
+    "body": [
+      "const $1 = useCallback(",
+      "\t() => {",
+      "\t\t$2",
+      "\t},",
+      "\t[$3],",
+      ")$0"
+    ],
+    "description": "React useCallback"
+  },
+  "useMemo": {
+    "prefix": "ume",
+    "body": [
+      "const $1 = useMemo(() => $2), [$3])$0"
+    ],
+    "description": "React useMemo"
+  },
+  "useContext": {
+    "prefix": "uc",
+    "body": ["const $1 = useContext($2)$0"],
+    "description": "React useContext"
+  },
+  "createContext": {
+    "prefix": "rcontext",
+    "body": ["const $1 = React.createContext()"],
+    "description": "Create React context"
+  }
+}

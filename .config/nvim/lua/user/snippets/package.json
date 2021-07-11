@@ -1,0 +1,18 @@
+{
+  "name": "snippets",
+  "engines": {
+    "vscode": "^1.69.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
+        "path": "./react.json"
+      },
+      {
+        "language": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
+        "path": "./javascript.json"
+      }
+    ]
+  }
+}
