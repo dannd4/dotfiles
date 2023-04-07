@@ -26,6 +26,8 @@ brew install jq
 brew install kubectx
 brew install kubernetes-cli
 brew install python
+brew install sqlite
+brew install terraform
 
 # Applications
 brew install --cask dropbox

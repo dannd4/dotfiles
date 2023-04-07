@@ -101,7 +101,7 @@ return {
       function() require("telescope").extensions.media_files.media_files() end,
       desc = "Find media files",
     },
-
+    ["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
     -- Spectre
     ["<leader>s"] = { name = "󰛔 Search/Replace" },
     ["<leader>ss"] = {

@@ -13,7 +13,7 @@ return {
         "marksman",
         "jsonls",
         "pyright",
-        "sqls",
+        "sqlls",
         "lua_ls",
         -- "tailwindcss", -- Disabled due to high node CPU usage
         "taplo",

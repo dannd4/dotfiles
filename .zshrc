@@ -1,11 +1,10 @@
-export TERM="xterm-256color"
-export LC_CTYPE=en_US.UTF-8
 export EDITOR='nvim'
+export LC_CTYPE=en_US.UTF-8
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$HOME/.volta/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.volta/bin:$PATH
 export PATH=$HOME/.go/bin:$PATH
 
 VOLTA_FEATURE_PNPM=1
