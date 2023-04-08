@@ -17,6 +17,6 @@ return {
     mapleader = " ", -- sets vim.g.mapleader
   },
   env = {
-    OPENAI_API_KEY = "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",
+    OPENAI_API_KEY = "",
   },
 }
