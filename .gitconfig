@@ -1,34 +1,25 @@
-[color]
-  ui = true
 [user]
 	name = dan.nguyen
 	email = dannd496@gmail.com
+[color]
+	ui = true
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red
+	new = green
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [core]
 	autocrlf = false
 	ignorecase = false
-  editor = nvim
-  pager = delta --dark --paging=never
+	editor = nvim
+	excludesfile = ~/.gitignore_global
 [push]
-  default = upstream
+	default = upstream
 [pull]
 	rebase = false
 [branch]
 	sort = -committerdate
 [diff]
 	renames = copies
-[delta "tokyonight"]
-  minus-style                   = syntax "#3f2d3d"
-  minus-non-emph-style          = syntax "#3f2d3d"
-  minus-emph-style              = syntax "#763842"
-  minus-empty-line-marker-style = syntax "#3f2d3d"
-  line-numbers-minus-style      = "#c25d64"
-  plus-style                    = syntax "#283b4d"
-  plus-non-emph-style           = syntax "#283b4d"
-  plus-emph-style               = syntax "#316172"
-  plus-empty-line-marker-style  = syntax "#283b4d"
-  line-numbers-plus-style       = "#399a96"
-  line-numbers-zero-style       = "#3b4261"
-[delta]
-  features = tokyonight
