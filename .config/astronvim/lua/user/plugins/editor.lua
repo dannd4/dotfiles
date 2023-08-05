@@ -1,17 +1,6 @@
 return {
   { "folke/todo-comments.nvim", opts = {}, event = "User AstroFile" },
   {
-    "folke/trouble.nvim", -- show diagnostics
-    cmd = { "TroubleToggle", "Trouble" },
-    opts = {
-      use_diagnostic_signs = true,
-      action_keys = {
-        close = { "<esc><esc>" },
-        cancel = "<c-e>",
-      },
-    },
-  },
-  {
     "nvim-pack/nvim-spectre", -- search and replace
     cmd = "Spectre",
     opts = function()
@@ -55,14 +44,21 @@ return {
     end,
   },
   {
+    "danymat/neogen",
+    cmd = "Neogen",
+    opts = {
+      snippet_engine = "luasnip",
+      languages = {
+        typescript = { template = { annotation_convention = "tsdoc" } },
+        typescriptreact = { template = { annotation_convention = "tsdoc" } },
+      },
+    },
+  },
+  {
     "arsham/indent-tools.nvim", -- Indentation
     dependencies = { "arsham/arshlib.nvim" },
     event = "User AstroFile",
     config = function() require("indent-tools").config {} end,
-  },
-  {
-    "machakann/vim-sandwich", -- Surrounding text
-    event = "User AstroFile",
   },
   {
     "phaazon/hop.nvim", -- Easy motion
@@ -82,44 +78,27 @@ return {
     opts = { use_default_keymaps = false },
   },
   {
-    "willothy/flatten.nvim",
-    lazy = false,
-    priority = 1001,
-    opts = {
-      callbacks = {
-        pre_open = function()
-          -- Close toggleterm when an external open request is received
-          require("toggleterm").toggle(0)
-        end,
-        post_open = function(bufnr, winnr, ft)
-          if ft == "gitcommit" then
-            -- If the file is a git commit, create one-shot autocmd to delete it on write
-            -- If you just want the toggleable terminal integration, ignore this bit and only use the
-            -- code in the else block
-            vim.api.nvim_create_autocmd("BufWritePost", {
-              buffer = bufnr,
-              once = true,
-              callback = function()
-                -- This is a bit of a hack, but if you run bufdelete immediately
-                -- the shell can occasionally freeze
-                vim.defer_fn(function() vim.api.nvim_buf_delete(bufnr, {}) end, 50)
-              end,
-            })
-          else
-            -- If it's a normal file, then reopen the terminal, then switch back to the newly opened window
-            -- This gives the appearance of the window opening independently of the terminal
-            require("toggleterm").toggle(0)
-            vim.api.nvim_set_current_win(winnr)
-          end
-        end,
-        block_end = function()
-          -- After blocking ends (for a git commit, etc), reopen the terminal
-          require("toggleterm").toggle(0)
-        end,
-      },
-      window = {
-        open = "tab",
-      },
+    "echasnovski/mini.move",
+    keys = {
+      { "<M-l>", mode = { "n", "v" } },
+      { "<M-k>", mode = { "n", "v" } },
+      { "<M-j>", mode = { "n", "v" } },
+      { "<M-h>", mode = { "n", "v" } },
     },
+    opts = {},
+  },
+  { "junegunn/vim-easy-align", event = "User AstroFile" },
+  {
+    "echasnovski/mini.surround",
+    keys = {
+      { "sa", desc = "Add surrounding", mode = { "n", "v" } },
+      { "sd", desc = "Delete surrounding" },
+      { "sf", desc = "Find right surrounding" },
+      { "sF", desc = "Find left surrounding" },
+      { "sh", desc = "Highlight surrounding" },
+      { "sr", desc = "Replace surrounding" },
+      { "sn", desc = "Update `MiniSurround.config.n_lines`" },
+    },
+    opts = { n_lines = 200 },
   },
 }

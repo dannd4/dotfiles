@@ -3,9 +3,8 @@ return {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       local cmp, copilot = require "cmp", require "copilot.suggestion"
-      local snip_status_ok, luasnip = pcall(require, "luasnip")
-
-      if not snip_status_ok then return end
+      local luasnip = require "luasnip"
+      local compare = require "cmp.config.compare"
 
       local function has_words_before()
         local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
@@ -15,29 +14,46 @@ return {
       return require("astronvim.utils").extend_tbl(opts, {
         window = {
           completion = {
-            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:Visual,Search:None",
-            border = "none",
+            border = "rounded",
             col_offset = -1,
             side_padding = 0,
           },
         },
-        performance = {
-          debounce = 300,
-          throttle = 120,
-          fetching_timeout = 100
-        },
         sources = cmp.config.sources {
           { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip",  priority = 750 },
-          { name = "path",     priority = 500 },
-          { name = "buffer",   priority = 250 },
+          { name = "luasnip", priority = 750 },
+          { name = "path", priority = 500 },
+          { name = "buffer", priority = 250 },
+        },
+        sorting = {
+          comparators = {
+            compare.offset,
+            compare.exact,
+            compare.score,
+            compare.recently_used,
+            function(entry1, entry2)
+              local _, entry1_under = entry1.completion_item.label:find "^_+"
+              local _, entry2_under = entry2.completion_item.label:find "^_+"
+              entry1_under = entry1_under or 0
+              entry2_under = entry2_under or 0
+              if entry1_under > entry2_under then
+                return false
+              elseif entry1_under < entry2_under then
+                return true
+              end
+            end,
+            compare.kind,
+            compare.sort_text,
+            compare.length,
+            compare.order,
+          },
         },
         mapping = {
-          ["<CR>"] = cmp.mapping.confirm({
+          ["<CR>"] = cmp.mapping.confirm {
             -- this is the important line
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
-          }),
+          },
           ["<Tab>"] = cmp.mapping(function(fallback)
             if copilot.is_visible() then
               copilot.accept()
@@ -71,7 +87,7 @@ return {
                 fallback()
               end
             end,
-          }
+          },
         },
       })
     end,
@@ -79,7 +95,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
-      require "plugins.configs.luasnip" (plugin, opts)                                                    -- include the default astronvim config that calls the setup call
+      require "plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
       require("luasnip.loaders.from_vscode").lazy_load { paths = { "~/.config/nvim/lua/user/snippets" } } -- load snippets paths
 
       local luasnip = require "luasnip"

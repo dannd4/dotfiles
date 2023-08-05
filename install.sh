@@ -1,10 +1,17 @@
-# Install homebrew
+#!/bin/sh
+
+# Install xcode cli tools
+echo "Installing commandline tools..."
+xcode-select --install
+
+# Install brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Bash tool
+# Brew Formulae
 brew install git
 brew install neovim
 brew install tmux
+brew install jq
 brew install ripgrep
 brew install fzf
 brew install ack
@@ -14,22 +21,22 @@ brew install thefuck
 brew install exa
 brew install tree
 brew install gnu-sed
-brew install lazygit
-brew install git-delta
-brew install starship
-brew install bitwarden-cli
-brew install volta
-brew install go
 brew install imagemagick
 brew install chafa
-brew install jq
-brew install kubectx
-brew install kubernetes-cli
+brew install ifstat
+brew install lazygit
+brew install starship
+brew install sketchybar
+brew install sf-symbols
+brew install volta
+brew install go
 brew install python
 brew install sqlite
+brew install kubectx
+brew install kubernetes-cli
 brew install terraform
 
-# Applications
+# Brew Casks
 brew install --cask dropbox
 brew install --cask brave-browser
 brew install --cask google-chrome

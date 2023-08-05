@@ -4,6 +4,7 @@ return {
     name = "catppuccin",
     opts = {
       flavour = "frappe",
+      dim_inactive = { enabled = true, percentage = 0.25 },
       background = { light = "latte", dark = "frappe" },
       styles = {
         comments = { "italic" },
@@ -58,67 +59,4 @@ return {
       },
     },
   },
-  -- {
-  --   "olimorris/onedarkpro.nvim",
-  --   priority = 1000,
-  --   config = function()
-  --     require("onedarkpro").setup {
-  --       styles = {
-  --         methods = "bold",
-  --         functions = "bold",
-  --         keywords = "italic",
-  --         comments = "italic",
-  --         parameters = "italic",
-  --         conditionals = "italic",
-  --         virtual_text = "italic",
-  --       },
-  --       options = {
-  --         cursorline = true,
-  --       },
-  --       highlights = {
-  --         -- Syntax
-  --         Constant = { fg = "${yellow}" },
-  --         -- Dashboard
-  --         dashboardHeader = { fg = "${cyan}" },
-  --         dashboardCenter = { fg = "${green}", style = "bold" },
-  --         -- Neo-tree
-  --         NeoTreeDirectoryIcon = { fg = "${gray}" },
-  --         -- Treesitter
-  --         ["@tag.attribute"] = { fg = "${orange}" },
-  --         -- Typescript
-  --         ["@variable.tsx"] = { fg = "${yellow}" },
-  --         -- Git
-  --         DiffDelete = { bg = "#3F2D3D" },
-  --         DiffviewDiffAddAsDelete = { bg = "#3F2D3D" },
-  --         DiffAddAsDelete = { bg = "#3F2D3D" },
-  --         DiffDeleteText = { bg = "#4B1818" },
-  --         DiffAddText = { bg = "#005869" },
-  --       },
-  --     }
-  --   end,
-  -- },
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = function()
-  --     return {
-  --       style = "storm",
-  --       sidebars = {
-  --         "qf",
-  --         "vista_kind",
-  --         "terminal",
-  --         "startuptime",
-  --         "Outline",
-  --       },
-  --       on_highlights = function(hl, c)
-  --         local util = require "tokyonight.util"
-  --         hl.DiffviewDiffAddAsDelete = { bg = util.darken(c.red1, 0.15) }
-  --         hl.DiffAddAsDelete = { bg = util.darken(c.red1, 0.15) }
-  --         hl.DiffDeleteText = { bg = util.darken(c.red1, 0.3) }
-  --         hl.DiffAddText = { bg = util.darken(c.green2, 0.3) }
-  --       end,
-  --     }
-  --   end,
-  -- },
 }

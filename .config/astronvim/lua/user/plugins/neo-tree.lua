@@ -19,7 +19,7 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = {
     window = {
-      width = 40
+      width = 40,
     },
     event_handlers = {
       {
@@ -30,6 +30,6 @@ return {
         event = events.FILE_RENAMED,
         handler = on_file_remove,
       },
-    }
-  }
+    },
+  },
 }

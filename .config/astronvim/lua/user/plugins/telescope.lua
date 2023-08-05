@@ -2,6 +2,8 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "kkharji/sqlite.lua",
+    { "nvim-telescope/telescope-fzf-native.nvim", enabled = false },
+    "nvim-telescope/telescope-fzy-native.nvim",
     "nvim-telescope/telescope-frecency.nvim",
     "nvim-telescope/telescope-smart-history.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim",
@@ -53,7 +55,7 @@ return {
           auto_quoting = true, -- enable/disable auto-quoting
           mappings = {
             i = {
-              ["<C-f>"] = lga_actions.quote_prompt(),
+              ["<C-i>"] = lga_actions.quote_prompt(),
             },
           },
           preview = true,
@@ -69,6 +71,7 @@ return {
   config = function(...)
     require "plugins.configs.telescope"(...)
     local telescope = require "telescope"
+    telescope.load_extension "fzy_native"
     telescope.load_extension "frecency"
     telescope.load_extension "smart_history"
     telescope.load_extension "live_grep_args"

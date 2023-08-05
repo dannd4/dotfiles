@@ -7,11 +7,10 @@ return {
     ["<Esc><Esc>"] = { ":nohlsearch<cr>", desc = "Stop highlighting" },
     ["U"] = { "<C-r>", desc = "Redo" },
     ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle Term" },
+    ["<C-r>"] = { "<cmd>checktime<cr>", desc = "refresh file" },
     -- Movement
     ["B"] = { "^", desc = "Jump to start line" },
     ["E"] = { "$", desc = "jump to end line" },
-    ["<A-j>"] = { ":m .+1<CR>==", desc = "Move line down" },
-    ["<A-k>"] = { ":m .-2<CR>==", desc = "Move line up" },
     -- Multi cursor
     ["cn"] = { "*``cgn", desc = "Inititiate" },
     ["cN"] = { "*``cgN", desc = "Inititiate (backwards direction)" },
@@ -116,39 +115,27 @@ return {
       function() require("spectre").open_file_search() end,
       desc = "Spectre (current file)",
     },
-    -- Trouble
-    ["<leader>x"] = { name = "裂Trouble" },
-    ["<leader>xx"] = {
-      "<cmd>TroubleToggle document_diagnostics<cr>",
-      desc = "Document Diagnostics (Trouble)",
-    },
-    ["<leader>xX"] = {
-      "<cmd>TroubleToggle workspace_diagnostics<cr>",
-      desc = "Workspace Diagnostics (Trouble)",
-    },
-    ["<leader>xl"] = {
-      "<cmd>TroubleToggle loclist<cr>",
-      desc = "Location List (Trouble)",
-    },
-    ["<leader>xq"] = {
-      "<cmd>TroubleToggle quickfix<cr>",
-      desc = "Quickfix List (Trouble)",
-    },
     -- TreeSJ
     ["<leader>m"] = { "<cmd>TSJToggle<cr>", desc = "Toggle join/split node under cursor" },
+    -- neogen
+    ["<leader>a"] = { desc = "󰏫 Annotate" },
+    ["<leader>a<cr>"] = { function() require("neogen").generate {} end, desc = "Current" },
+    ["<leader>ac"] = { function() require("neogen").generate { type = "class" } end, desc = "Class" },
+    ["<leader>af"] = { function() require("neogen").generate { type = "func" } end, desc = "Function" },
+    ["<leader>at"] = { function() require("neogen").generate { type = "type" } end, desc = "Type" },
+    ["<leader>aF"] = { function() require("neogen").generate { type = "file" } end, desc = "File" },
+    -- neogit
+    ["<leader>gG"] = { function() require("neogit").open() end, desc = "Neogit" },
   },
   t = {
-    -- setting a mapping to false will disable it
     ["<esc><esc>"] = { "<c-\\><c-n>:q<cr>", desc = "Terminal quit" },
     ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle Term" },
   },
   x = {
-    -- line text-objects
     ["il"] = { "g_o^", desc = "Inside line text object" },
     ["al"] = { "$o^", desc = "Around line text object" },
   },
   o = {
-    -- line text-objects
     ["il"] = { ":normal vil<cr>", desc = "Inside line text object" },
     ["al"] = { ":normal val<cr>", desc = "Around line text object" },
     ["f"] = {
@@ -164,8 +151,6 @@ return {
     ["p"] = { '"_dP', desc = "Paste without yank" },
     ["B"] = { "^", desc = "Jump to start line" },
     ["E"] = { "$", desc = "jump to end line" },
-    ["<A-k>"] = { ":move '<-2<cr>gv-gv", desc = "Move line up" },
-    ["<A-j>"] = { ":move '>+1<cr>gv-gv", desc = "Move line down" },
     -- Hop
     ["f"] = {
       "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",

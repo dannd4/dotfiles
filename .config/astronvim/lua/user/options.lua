@@ -1,11 +1,12 @@
+vim.fn.setenv("FIG_TERM", nil)
+
 return {
   opt = {
-    relativenumber = true, -- sets vim.opt.relativenumber
     conceallevel = 2, -- enable conceal
     list = true, -- show whitespace characters
     listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
     showbreak = "↪ ",
-    showtabline = 2,
+    showtabline = 1,
     swapfile = false,
     spellfile = vim.fn.expand "~/.config/nvim/lua/user/spell/en.utf-8.add",
     thesaurus = vim.fn.expand "~/.config/nvim/lua/user/spell/mthesaur.txt",
@@ -15,8 +16,6 @@ return {
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader
-  },
-  env = {
-    OPENAI_API_KEY = "",
+    resession_enabled = true,
   },
 }

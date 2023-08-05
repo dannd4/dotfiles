@@ -1,3 +1,5 @@
+local utils = require "user.utils"
+
 return {
   { "williamboman/mason.nvim", opts = { PATH = "append" } },
   {
@@ -6,15 +8,18 @@ return {
       ensure_installed = {
         "bashls",
         "cssls",
+        "docker_compose_language_service",
         "dockerls",
+        "emmet_ls",
         "gopls",
         "graphql",
         "html",
-        "marksman",
         "jsonls",
-        "pyright",
-        "sqlls",
         "lua_ls",
+        "marksman",
+        "pyright",
+        "ruff_lsp",
+        "sqlls",
         -- "tailwindcss", -- Disabled due to high node CPU usage
         "taplo",
         "tsserver",
@@ -24,30 +29,22 @@ return {
   },
   {
     "jay-babu/mason-null-ls.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      opts.ensure_installed = {
         "shellcheck",
         "stylua",
         "black",
         "isort",
         "prettierd",
         "shfmt",
-        "shellcheck",
-      },
-    },
-    config = function(_, opts)
-      local mason_null_ls = require "mason-null-ls"
-      local null_ls = require "null-ls"
-
-      mason_null_ls.setup(opts)
-      mason_null_ls.setup_handlers {
-        taplo = function() end, -- disable taplo in null-ls, it's taken care of by lspconfig
-        prettierd = function()
-          null_ls.register(null_ls.builtins.formatting.prettierd.with {
-            extra_filetypes = { "markdown" },
-          })
-        end,
+        "hadolint",
       }
+
+      opts.handlers = {
+        taplo = function() end, -- disable taplo in null-ls, it's taken care of by lspconfig
+      }
+
+      return opts
     end,
   },
 }

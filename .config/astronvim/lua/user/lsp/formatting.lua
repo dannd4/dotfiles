@@ -3,5 +3,6 @@ return {
     "tsserver",
     "jsonls",
     "lua_ls",
+    "html",
   },
 }
