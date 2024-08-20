@@ -33,4 +33,7 @@ shopt -s nullglob
 do_stuff "init"
 do_stuff "link"
 
+git submodule init
+git submodule update
+
 echo "All done"

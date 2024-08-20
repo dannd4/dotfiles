@@ -24,7 +24,6 @@ brew install fzf
 brew install ack
 brew install fd
 brew install ag
-brew install thefuck
 brew install eza
 brew install tree
 brew install duti
@@ -46,13 +45,13 @@ brew install telnet
 brew install zoxide
 
 # Brew Casks
-brew install --cask dropbox
 brew install --cask google-chrome
 brew install --cask firefox
 brew install --cask slack
 brew install --cask telegram
 brew install --cask discord
 brew install --cask wezterm
+brew install --cask zed
 brew install --cask visual-studio-code
 brew install --cask evkey
 brew install --cask notion
@@ -61,12 +60,9 @@ brew install --cask postman
 brew install --cask obs
 brew install --cask raycast
 brew install --cask spotify
-brew install --cask tableplus
 brew install --cask karabiner-elements
-brew install --cask raindropio
 brew install --cask notunes
 brew install --cask figma
 brew install --cask jordanbaird-ice
 brew install --cask localsend
 brew install --cask maczip
-brew install --cask zed

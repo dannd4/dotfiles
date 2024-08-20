@@ -19,7 +19,7 @@ function M.options(config)
 			weight = "Bold",
 		},
 	})
-	config.font_size = 16
+	config.font_size = 14
 	config.line_height = 1.25
 
 	config.enable_tab_bar = true

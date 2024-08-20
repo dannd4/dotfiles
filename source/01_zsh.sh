@@ -30,7 +30,6 @@ source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit
 compinit
 
-eval "$(thefuck --alias)"
 eval "$(pyenv init -)"
 eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"

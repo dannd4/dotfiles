@@ -1,18 +1,29 @@
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
 
-local utils = require "utils"
-
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
   ---@type AstroCoreOpts
   opts = {
     -- Core features of AstroNvim
-    features = {},
+    features = {
+      large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
+      autopairs = true, -- enable autopairs at start
+      cmp = true, -- enable completion at start
+      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      highlighturl = true, -- highlight URLs at start
+      notifications = true, -- enable notifications at start
+    },
     -- Diagnostics
     diagnostics = {
       virtual_text = false,
+      underline = true,
+    },
+    filetypes = {
+      filename = {
+        [".swcrc"] = "jsonc",
+      },
     },
     -- Vim options
     options = {
@@ -30,8 +41,6 @@ return {
           nbsp = "␣",
           leadmultispace = "│ ",
         },
-        spellfile = vim.fn.expand "~/.config/nvim/lua/spell/en.utf-8.add",
-        thesaurus = vim.fn.expand "~/.config/nvim/lua/spell/mthesaur.txt",
       },
       g = {},
     },
@@ -46,10 +55,6 @@ return {
         -- Movement
         ["H"] = { "^", desc = "Jump to start line" },
         ["L"] = { "$", desc = "jump to end line" },
-
-        -- better search
-        n = { utils.better_search "n", desc = "Next search" },
-        N = { utils.better_search "N", desc = "Previous search" },
 
         -- Buffer
         ["<Tab>"] = {
@@ -66,6 +71,12 @@ return {
           end,
           desc = "Pick buffer tab",
         },
+
+        -- Smart Splits
+        ["<A-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" },
+        ["<A-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" },
+        ["<A-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" },
+        ["<A-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" },
       },
       i = {
         ["<C-h>"] = { "<Left>" },
@@ -104,6 +115,26 @@ return {
             if new_showtabline ~= vim.opt.showtabline:get() then vim.opt.showtabline = new_showtabline end
           end,
         },
+      },
+      autocompletion = {
+        event = { "TextChangedI", "TextChangedP" },
+        pattern = "*",
+        group = "autocompletion",
+        callback = function()
+          local line = vim.api.nvim_get_current_line()
+          local cursor = vim.api.nvim_win_get_cursor(0)[2]
+
+          local current = string.sub(line, cursor, cursor + 1)
+          if current == "." or current == "," or current == " " then require("cmp").close() end
+
+          local before_line = string.sub(line, 1, cursor + 1)
+          local after_line = string.sub(line, cursor + 1, -1)
+          if not string.match(before_line, "^%s+$") then
+            if after_line == "" or string.match(before_line, " $") or string.match(before_line, "%.$") then
+              require("cmp").complete()
+            end
+          end
+        end,
       },
     },
   },

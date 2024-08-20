@@ -4,7 +4,6 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "kkharji/sqlite.lua",
-    "nvim-telescope/telescope-frecency.nvim",
     "nvim-telescope/telescope-smart-history.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
@@ -30,7 +29,15 @@ return {
             },
             ["<Leader>fo"] = {
               function()
-                require("telescope").extensions.frecency.frecency { prompt_title = "Recent Files", workspace = "CWD" }
+                require("telescope.builtin").oldfiles {
+                  prompt_title = "Recent Files",
+                  cwd_only = true,
+                  tiebreak = function(current_entry, existing_entry, _)
+                    -- This ensures that when you are filtering, it's also sorted by last opened time.
+                    -- https://github.com/nvim-telescope/telescope.nvim/issues/2539#issuecomment-1562510095
+                    return current_entry.index < existing_entry.index
+                  end,
+                }
               end,
               desc = "Find frecency",
             },
@@ -49,7 +56,6 @@ return {
         additional_vim_regex_highlighting = false,
       },
       defaults = {
-        preview = false,
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" },
         file_ignore_patterns = {
@@ -75,6 +81,7 @@ return {
 
       pickers = {
         find_files = {
+          preview = false,
           hidden = true,
           find_command = function(cfg)
             local find_command = { "rg", "--files", "--color", "never" }
@@ -83,6 +90,7 @@ return {
           end,
         },
         buffers = {
+          preview = false,
           path_display = { "smart" },
           mappings = {
             i = { ["<c-d>"] = actions.delete_buffer },
@@ -92,12 +100,6 @@ return {
       },
 
       extensions = {
-        frecency = {
-          default_workspace = "CWD",
-          show_scores = false,
-          show_filter_column = false,
-          show_unindexed = false,
-        },
         live_grep_args = {
           preview = true,
           auto_quoting = true, -- enable/disable auto-quoting
@@ -122,7 +124,6 @@ return {
     local telescope = require "telescope"
     telescope.load_extension "live_grep_args"
     telescope.load_extension "smart_history"
-    telescope.load_extension "frecency"
     telescope.load_extension "file_browser"
     telescope.load_extension "undo"
   end,

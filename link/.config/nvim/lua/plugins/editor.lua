@@ -11,71 +11,12 @@ return {
   },
 
   {
-    "mrjones2014/smart-splits.nvim",
-    dependencies = {
-      {
-        "AstroNvim/astrocore",
-        opts = {
-          mappings = {
-            n = {
-              ["<A-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" },
-              ["<A-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" },
-              ["<A-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" },
-              ["<A-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" },
-            },
-          },
-        },
-      },
-    },
-  },
-
-  {
-    "smoka7/hop.nvim",
-    opts = {},
-    dependencies = {
-      "AstroNvim/astrocore",
-      opts = {
-        mappings = {
-          n = {
-            ["f"] = {
-              function()
-                require("hop").hint_char1 {
-                  direction = require("hop.hint").HintDirection.AFTER_CURSOR,
-                  current_line_only = true,
-                }
-              end,
-            },
-            ["F"] = {
-              function()
-                require("hop").hint_char1 {
-                  direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
-                  current_line_only = true,
-                }
-              end,
-            },
-            ["s"] = { function() require("hop").hint_words {} end, desc = "Hop hint words" },
-            ["<S-s>"] = { function() require("hop").hint_lines {} end, desc = "Hop hint lines" },
-          },
-          v = {
-            ["f"] = {
-              function()
-                require("hop").hint_char1 {
-                  direction = require("hop.hint").HintDirection.AFTER_CURSOR,
-                  current_line_only = true,
-                }
-              end,
-            },
-            ["F"] = {
-              function()
-                require("hop").hint_char1 {
-                  direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
-                  current_line_only = true,
-                }
-              end,
-            },
-            ["s"] = { function() require("hop").hint_words { extend_visual = true } end, desc = "Hop hint words" },
-            ["<S-s>"] = { function() require("hop").hint_lines { extend_visual = true } end, desc = "Hop hint lines" },
-          },
+    "folke/flash.nvim",
+    opts = {
+      modes = {
+        char = {
+          jump_labels = true,
+          multi_line = false,
         },
       },
     },
@@ -111,6 +52,15 @@ return {
         maps.n["<A-K>"] = { "<Plug>(VM-Add-Cursor-Up)", desc = "Add cursor above" }
         maps.n["<A-J>"] = { "<Plug>(VM-Add-Cursor-Down)", desc = "Add cursor below" }
       end,
+    },
+  },
+
+  {
+    "anuvyklack/windows.nvim",
+    opts = {
+      autowidth = {
+        enable = true,
+      },
     },
   },
 }
