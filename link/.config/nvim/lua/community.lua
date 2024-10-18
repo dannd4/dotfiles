@@ -1,17 +1,16 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.tailwindcss" },
+  { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.python-ruff" },
-  { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.pack.mdx" },
   { import = "astrocommunity.pack.docker" },
-  { import = "astrocommunity.pack.vue" },
 
   { import = "astrocommunity.lsp.ts-error-translator-nvim" },
 
