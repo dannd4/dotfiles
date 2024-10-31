@@ -106,8 +106,8 @@ return {
           path_display = { "truncate" },
           mappings = {
             i = {
-              ["<C-a>"] = lga_actions.quote_prompt(),
-              ["<C-f>"] = lga_actions.quote_prompt { postfix = " --iglob " },
+              ["<C-f>"] = lga_actions.quote_prompt(),
+              ["<C-i>"] = lga_actions.quote_prompt { postfix = " --iglob " },
             },
           },
         },

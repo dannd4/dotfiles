@@ -23,6 +23,13 @@ return {
   },
 
   {
+    "abecodes/tabout.nvim",
+    opts = {
+      ignore_beginning = false,
+    },
+  },
+
+  {
     "mg979/vim-visual-multi",
     event = { "User AstroFile", "InsertEnter" },
     dependencies = {
@@ -52,15 +59,6 @@ return {
         maps.n["<A-K>"] = { "<Plug>(VM-Add-Cursor-Up)", desc = "Add cursor above" }
         maps.n["<A-J>"] = { "<Plug>(VM-Add-Cursor-Down)", desc = "Add cursor below" }
       end,
-    },
-  },
-
-  {
-    "anuvyklack/windows.nvim",
-    opts = {
-      autowidth = {
-        enable = true,
-      },
     },
   },
 }

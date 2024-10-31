@@ -8,29 +8,25 @@ return {
   opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
-      signature_help = true,
+      signature_help = false,
     },
     -- Customize lsp formatting options
     formatting = {
       format_on_save = { enabled = true },
       -- disable formatting capabilities for the listed language servers
-      disabled = { "ts_ls", "vtsls", "jsonls", "lua_ls", "html", "biome" },
+      disabled = { "ts_ls", "vtsls", "jsonls", "lua_ls", "html" },
     },
     -- enable servers that you already have installed without mason
     servers = {},
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      biome = {
-        cmd = { "npx", "biome", "lsp-proxy" },
-      },
       vtsls = {
         settings = {
           vtsls = {
             experimental = {
               completion = {
                 enableServerSideFuzzyMatch = true,
-                entriesLimit = 50,
               },
             },
           },
@@ -51,6 +47,32 @@ return {
           event = "BufWritePost",
           desc = "Add all missing import",
           callback = function() require("vtsls").commands.add_missing_imports() end,
+        },
+      },
+
+      no_insert_inlay_hints = {
+        -- only create for language servers that support inlay hints
+        -- (and only if vim.lsp.inlay_hint is available)
+        cond = vim.lsp.inlay_hint and "textDocument/inlayHint" or false,
+        {
+          -- when going into insert mode
+          event = "InsertEnter",
+          desc = "disable inlay hints on insert",
+          callback = function(args)
+            local filter = { bufnr = args.buf }
+            -- if the inlay hints are currently enabled
+            if vim.lsp.inlay_hint.is_enabled(filter) then
+              -- disable the inlay hints
+              vim.lsp.inlay_hint.enable(false, filter)
+              -- create a single use autocommand to turn the inlay hints back on
+              -- when leaving insert mode
+              vim.api.nvim_create_autocmd("InsertLeave", {
+                buffer = args.buf,
+                once = true,
+                callback = function() vim.lsp.inlay_hint.enable(true, filter) end,
+              })
+            end
+          end,
         },
       },
     },

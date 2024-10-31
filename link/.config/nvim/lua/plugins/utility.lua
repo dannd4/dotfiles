@@ -8,10 +8,15 @@ return {
   {
     "folke/noice.nvim",
     opts = {
+      lsp = {
+        hover = {
+          silent = true,
+        },
+      },
       routes = {
         {
           filter = {
-            event = "msg_show",
+            event = { "msg_show", "notify" },
             any = {
               { find = "%d+ less lines" },
               { find = "%d+ fewer lines" },

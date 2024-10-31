@@ -1,4 +1,6 @@
 return {
+  { "williamboman/mason.nvim", opts = { PATH = "append" } },
+
   {
     "rmagatti/goto-preview",
     opts = {

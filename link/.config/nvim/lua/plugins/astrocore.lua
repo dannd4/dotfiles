@@ -78,16 +78,26 @@ return {
         ["<A-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" },
         ["<A-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" },
       },
+
       i = {
         ["<C-h>"] = { "<Left>" },
         ["<C-j>"] = { "<Down>" },
         ["<C-k>"] = { "<Up>" },
         ["<C-l>"] = { "<Right>" },
       },
+
+      s = {
+        ["<C-h>"] = { "<Left>" },
+        ["<C-j>"] = { "<Down>" },
+        ["<C-k>"] = { "<Up>" },
+        ["<C-l>"] = { "<Right>" },
+      },
+
       t = {
         ["<Esc><esc>"] = "<c-\\><c-n>:ToggleTerm<CR>",
         ["<C-q>"] = "<c-\\><c-n>:q<cr>",
       },
+
       v = {
         ["H"] = { "^", desc = "Jump to start line" },
         ["L"] = { "$", desc = "jump to end line" },

@@ -66,6 +66,7 @@ return {
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
           },
+
           ["<Tab>"] = cmp.mapping(function(fallback)
             if copilot.is_visible() then
               copilot.accept()
@@ -79,6 +80,7 @@ return {
               fallback()
             end
           end, { "i", "s" }),
+
           ["<C-c>"] = cmp.mapping(function(fallback)
             if copilot.is_visible() then
               copilot.dismiss()
@@ -86,6 +88,7 @@ return {
               fallback()
             end
           end),
+
           ["<ESC>"] = cmp.mapping(function(fallback)
             if copilot.is_visible() then
               copilot.dismiss()

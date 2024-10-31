@@ -23,6 +23,7 @@ return {
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
 
+  { import = "astrocommunity.motion.mini-ai" },
   { import = "astrocommunity.motion.mini-move" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.motion.vim-matchup" },
@@ -42,5 +43,5 @@ return {
 
   { import = "astrocommunity.recipes.vscode-icons" },
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
-  { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
+  { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
 }
