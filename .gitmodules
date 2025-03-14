@@ -7,3 +7,6 @@
 [submodule "vendor/zsh-custom/plugins/git-open"]
 	path = vendor/zsh-custom/plugins/git-open
 	url = git@github.com:paulirish/git-open.git
+[submodule "vendor/zsh-custom/plugins/zsh-vi-mode"]
+	path = vendor/zsh-custom/plugins/zsh-vi-mode
+	url = git@github.com:jeffreytse/zsh-vi-mode.git

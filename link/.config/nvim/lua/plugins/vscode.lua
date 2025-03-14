@@ -48,6 +48,8 @@ return {
       local maps = assert(opts.mappings)
       -- basic actions
       maps.n["<Leader>q"] = function() vscode.action "workbench.action.closeActiveEditor" end
+      maps.n["u"] = "<Cmd>call VSCodeNotify('undo')<CR>"
+      maps.n["U"] = "<Cmd>call VSCodeNotify('redo')<CR>"
 
       -- splits navigation
       maps.n["|"] = function() vscode.action "workbench.action.splitEditor" end
@@ -58,12 +60,11 @@ return {
       maps.n["<C-L>"] = function() vscode.action "workbench.action.navigateRight" end
 
       -- buffer management
-      maps.n["<Tab><Tab>"] = function()
-        vscode.action "workbench.action.quickOpenLeastRecentlyUsedEditor"
-      end
+      maps.n["<Tab><Tab>"] = function() vscode.action "workbench.action.quickOpenLeastRecentlyUsedEditor" end
       maps.n["<Leader>c"] = "<Cmd>Tabclose<CR>"
       maps.n["<Leader>C"] = "<Cmd>Tabclose!<CR>"
       maps.n["<Leader>bc"] = function() vscode.action "workbench.action.closeOtherEditors" end
+      maps.n["<Leader>bC"] = function() vscode.action "workbench.action.closeAllEditors" end
 
       -- file explorer
       maps.n["<Leader>e"] = function() vscode.action "workbench.files.action.focusFilesExplorer" end
@@ -106,7 +107,7 @@ return {
     end,
   },
   -- disable colorscheme setting
-  { "AstroNvim/astroui",               opts = { colorscheme = false } },
+  { "AstroNvim/astroui", opts = { colorscheme = false } },
   -- disable treesitter highlighting
   { "nvim-treesitter/nvim-treesitter", opts = { highlight = { enable = false } } },
 }

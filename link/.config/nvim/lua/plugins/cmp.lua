@@ -9,6 +9,60 @@ return {
         enabled = true,
         auto_trigger = true, -- Suggest as we start typing
         debounce = 150,
+        keymap = {
+          accept = "<Tab>",
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-c>",
+        },
+      },
+    },
+  },
+
+  {
+    "yetone/avante.nvim",
+    build = "make",
+    event = "VeryLazy",
+    lazy = false,
+    version = false,
+    cmd = {
+      "AvanteAsk",
+      "AvanteBuild",
+      "AvanteEdit",
+      "AvanteRefresh",
+      "AvanteSwitchProvider",
+      "AvanteChat",
+      "AvanteToggle",
+      "AvanteClear",
+    },
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    },
+    ---@class avante.CoreConfig: avante.Config
+    opts = {
+      provider = "claude",
+    },
+    specs = { -- configure optional plugins
+      {
+        -- make sure `Avante` is added as a filetype
+        "MeanderingProgrammer/render-markdown.nvim",
+        optional = true,
+        opts = function(_, opts)
+          if not opts.file_types then opts.file_types = { "markdown" } end
+          opts.file_types = require("astrocore").list_insert_unique(opts.file_types, { "Avante" })
+        end,
+      },
+      {
+        -- make sure `Avante` is added as a filetype
+        "OXY2DEV/markview.nvim",
+        optional = true,
+        opts = function(_, opts)
+          if not opts.file_types then opts.file_types = { "markdown", "quarto", "rmd" } end
+          opts.file_types = require("astrocore").list_insert_unique(opts.file_types, { "Avante" })
+        end,
       },
     },
   },
@@ -31,17 +85,6 @@ return {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       local cmp = require "cmp"
-      local copilot = require "copilot.suggestion"
-      local luasnip = require "luasnip"
-
-      cmp.event:on("menu_opened", function() vim.b.copilot_suggestion_hidden = true end)
-      cmp.event:on("menu_closed", function() vim.b.copilot_suggestion_hidden = false end)
-
-      local function has_words_before()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-      end
 
       return require("astrocore").extend_tbl(opts, {
         enabled = function()
@@ -67,35 +110,8 @@ return {
             select = false,
           },
 
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if copilot.is_visible() then
-              copilot.accept()
-            elseif cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            elseif has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-
-          ["<C-c>"] = cmp.mapping(function(fallback)
-            if copilot.is_visible() then
-              copilot.dismiss()
-            else
-              fallback()
-            end
-          end),
-
-          ["<ESC>"] = cmp.mapping(function(fallback)
-            if copilot.is_visible() then
-              copilot.dismiss()
-            else
-              fallback()
-            end
-          end),
+          ["<Tab>"] = vim.NIL,
+          ["<S-Tab>"] = vim.NIL,
         },
       })
     end,

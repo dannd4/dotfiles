@@ -23,13 +23,6 @@ return {
   },
 
   {
-    "abecodes/tabout.nvim",
-    opts = {
-      ignore_beginning = false,
-    },
-  },
-
-  {
     "mg979/vim-visual-multi",
     event = { "User AstroFile", "InsertEnter" },
     dependencies = {

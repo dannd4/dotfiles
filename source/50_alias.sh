@@ -22,6 +22,7 @@ alias tl="tmux list-sessions"
 alias dotfiles='cd .dotfiles && vi'
 alias tmuxconf="cd ~/.config/tmux/ && vi"
 alias nvimconf="cd ~/.config/nvim && vi"
+alias weztermconf="cd ~/.config/wezterm && vi"
 
 # SSH
 alias copyssh="pbcopy < ~/.ssh/id_ed25519.pub"
