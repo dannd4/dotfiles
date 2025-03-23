@@ -7,33 +7,20 @@ if [[ ! -d $DOTFILES ]]; then
   cd $DOTFILES || exit 1
 fi
 
-function do_stuff() {
-  local files=($DOTFILES/$1/*)
-
-  # No files? abort.
-  if ((${#files[@]} == 0)); then return; fi
-
-  for file in "${files[@]}"; do
-    "$1_do" "$file"
-  done
-}
-
-function init_do() {
-  source "$1"
-}
-
-function link_do() {
-  ln -sf "${1#"$HOME"/}" ~/
-}
+git submodule init
+git submodule update
 
 # Tweak file globbing.
 shopt -s dotglob
 shopt -s nullglob
 
-do_stuff "init"
-do_stuff "link"
+local files=($DOTFILES/init/*)
 
-git submodule init
-git submodule update
+# No files? abort.
+if ((${#files[@]} == 0)); then return; fi
 
-echo "All done"
+for file in "${files[@]}"; do
+  sh "$file"
+done
+
+dotbot -c "$DOTFILES/dotbot.conf.yaml"

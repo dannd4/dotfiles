@@ -19,8 +19,6 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=$PYENV_ROOT/bin:$PATH
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export VOLTA_FEATURE_PNPM=1
-
 plugins=(
   kubectl
   git-open
@@ -38,4 +36,4 @@ eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(pyenv init -)"
 
-bindkey '^R' atuin-search
+bindkey '^r' atuin-search

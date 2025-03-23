@@ -1,7 +1,10 @@
-/link/.config/lazygit/state.yml
+.config/lazygit/state.yml
 
-/link/.config/tmux/plugins
-/link/.config/tmux/resurrect
+.config/tmux/plugins
+.config/tmux/resurrect
+
+.config/raycast/extensions
+.config/raycast/config.json
 
 # Folder view configuration files
 .DS_Store
@@ -11,5 +14,4 @@ Desktop.ini
 ._*
 Thumbs.db
 
-
-secrets.sh
+.env
