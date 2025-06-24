@@ -1,0 +1,7 @@
+keymap_mode = "vim-normal"
+filter_mode = "directory"
+style = "compact"
+inline_height = 20
+
+[keys]
+scroll_exits = false

@@ -1,5 +1,10 @@
-# Compiled Python files
-*.pyc
+.config/lazygit/state.yml
+
+.config/tmux/plugins
+.config/tmux/resurrect
+
+.config/raycast/extensions
+.config/raycast/config.json
 
 # Folder view configuration files
 .DS_Store
@@ -9,6 +14,4 @@ Desktop.ini
 ._*
 Thumbs.db
 
-# Files that might appear on external disks
-.Spotlight-V100
-.Trashes
+.env
