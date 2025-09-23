@@ -2,10 +2,14 @@ local wezterm = require("wezterm")
 
 local act = wezterm.action
 local gui = wezterm.gui
+local mux = wezterm.mux
 
 local function is_vim(pane)
-	-- this is set by the plugin, and unset on ExitPre in Neovim
-	return pane:get_user_vars().IS_NVIM == "true"
+	return pane:get_user_vars().IS_NVIM == "true" or pane:get_user_vars().WEZTERM_IN_TMUX == "1"
+end
+
+local function is_tmux(pane)
+	return pane:get_user_vars().WEZTERM_IN_TMUX == "1"
 end
 
 local function split_nav(resize_or_move, key, direction)
@@ -13,11 +17,12 @@ local function split_nav(resize_or_move, key, direction)
 		key = key,
 		mods = resize_or_move == "resize" and "META" or "CTRL",
 		action = wezterm.action_callback(function(win, pane)
-			if is_vim(pane) then
-				-- pass the keys through to vim/nvim
-				win:perform_action({
-					SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" },
-				}, pane)
+			if is_vim(pane) or is_tmux(pane) then
+				-- pass the keys through to vim/nvim/tmux
+				win:perform_action(
+					{ SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" } },
+					pane
+				)
 			else
 				if resize_or_move == "resize" then
 					win:perform_action({ AdjustPaneSize = { direction, 5 } }, pane)
@@ -32,10 +37,46 @@ end
 local M = {}
 
 function M.options(config)
-	config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+	config.leader = { key = ",", mods = "CTRL", timeout_milliseconds = 1000 }
 
 	config.keys = {
 		{ key = ".", mods = "LEADER", action = wezterm.action.ShowLauncher },
+		{
+			key = "a",
+			mods = "LEADER|CTRL",
+			action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
+		},
+
+		-- ==================== WORKSPACES ====================
+		{
+			key = "a",
+			mods = "LEADER",
+			action = act.AttachDomain("unix"),
+		},
+		{
+			key = "d",
+			mods = "LEADER",
+			action = act.DetachDomain({ DomainName = "unix" }),
+		},
+		{
+			key = "s",
+			mods = "LEADER",
+			action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+		},
+		{
+			key = "$",
+			mods = "LEADER|SHIFT",
+			action = act.PromptInputLine({
+				description = "Enter new name for session",
+				action = wezterm.action_callback(function(window, pane, line)
+					if line then
+						mux.rename_workspace(window:mux_window():get_workspace(), line)
+					end
+				end),
+			}),
+		},
+
+		-- ==================== TABS ====================
 		{
 			key = ",",
 			mods = "LEADER",
@@ -49,10 +90,30 @@ function M.options(config)
 			}),
 		},
 		{
-			key = "a",
-			mods = "LEADER|CTRL",
-			action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
+			key = "w",
+			mods = "LEADER",
+			action = act.ShowTabNavigator,
 		},
+		{
+			key = "c",
+			mods = "LEADER",
+			action = act.SpawnTab("CurrentPaneDomain"),
+		},
+		{
+			key = "X",
+			mods = "LEADER",
+			action = act.CloseCurrentTab({ confirm = true }),
+		},
+
+		-- ==================== PANES ====================
+		split_nav("move", "h", "Left"),
+		split_nav("move", "j", "Down"),
+		split_nav("move", "k", "Up"),
+		split_nav("move", "l", "Right"),
+		split_nav("resize", "LeftArrow", "Left"),
+		split_nav("resize", "DownArrow", "Down"),
+		split_nav("resize", "UpArrow", "Up"),
+		split_nav("resize", "RightArrow", "Right"),
 		{
 			key = "\\",
 			mods = "LEADER",
@@ -64,14 +125,9 @@ function M.options(config)
 			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 		},
 		{
-			key = "c",
-			mods = "LEADER",
-			action = act.SpawnTab("CurrentPaneDomain"),
-		},
-		{
 			key = "x",
 			mods = "LEADER",
-			action = wezterm.action.CloseCurrentTab({ confirm = false }),
+			action = wezterm.action.CloseCurrentPane({ confirm = false }),
 		},
 		{
 			key = "z",
@@ -83,25 +139,6 @@ function M.options(config)
 			mods = "CMD",
 			action = wezterm.action.TogglePaneZoomState,
 		},
-		{ key = "1", mods = "LEADER", action = wezterm.action({ ActivateTab = 0 }) },
-		{ key = "2", mods = "LEADER", action = wezterm.action({ ActivateTab = 1 }) },
-		{ key = "3", mods = "LEADER", action = wezterm.action({ ActivateTab = 2 }) },
-		{ key = "4", mods = "LEADER", action = wezterm.action({ ActivateTab = 3 }) },
-		{ key = "5", mods = "LEADER", action = wezterm.action({ ActivateTab = 4 }) },
-		{ key = "6", mods = "LEADER", action = wezterm.action({ ActivateTab = 5 }) },
-		{ key = "7", mods = "LEADER", action = wezterm.action({ ActivateTab = 6 }) },
-		{ key = "8", mods = "LEADER", action = wezterm.action({ ActivateTab = 7 }) },
-		{ key = "9", mods = "LEADER", action = wezterm.action({ ActivateTab = 8 }) },
-		-- move between split panes
-		split_nav("move", "h", "Left"),
-		split_nav("move", "j", "Down"),
-		split_nav("move", "k", "Up"),
-		split_nav("move", "l", "Right"),
-		-- resize panes
-		split_nav("resize", "LeftArrow", "Left"),
-		split_nav("resize", "DownArrow", "Down"),
-		split_nav("resize", "UpArrow", "Up"),
-		split_nav("resize", "RightArrow", "Right"),
 	}
 
 	-- copy_mode

@@ -22,7 +22,7 @@ function M.options(config)
 			tabline_b = "",
 			tabline_x = "",
 			tabline_y = "",
-			tabline_z = { "window" },
+			tabline_z = "",
 		},
 	})
 

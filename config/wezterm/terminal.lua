@@ -29,7 +29,7 @@ function M.options(config)
 	config.show_new_tab_button_in_tab_bar = false
 
 	config.window_decorations = "RESIZE"
-	config.window_padding = { left = 5, right = 5, top = 0, bottom = 0 }
+	config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 
 	config.front_end = "WebGpu"
 	config.audible_bell = "Disabled"
