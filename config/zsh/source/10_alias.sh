@@ -1,7 +1,7 @@
 # General
 alias vi=nvim
-alias path='echo -e ${PATH//:/\\n}'
 alias cls="clear"
+alias path='echo -e ${PATH//:/\\n}'
 alias reload="exec ${SHELL} -l"
 
 # Navigation
@@ -12,6 +12,9 @@ alias ~="cd ~"
 alias dt="cd ~/Desktop"
 alias dl="cd ~/Downloads"
 alias ws="cd ~/workspace"
+alias dotfiles='cd ~/.dotfiles'
+alias nvimconf="cd ~/.config/nvim"
+alias weztermconf="cd ~/.config/wezterm"
 
 # eza is a replacement for ls: https://github.com/eza-community/eza
 if type eza &>/dev/null; then
@@ -21,11 +24,12 @@ if type eza &>/dev/null; then
   alias grep="grep --color=auto"
 fi
 
-# Configs
-alias dotfiles='cd .dotfiles && vi'
-alias nvimconf="cd ~/.config/nvim && vi"
-alias weztermconf="cd ~/.config/wezterm && vi"
+# Tmux
+alias ta="tmux attach -t"
+alias ts="tmux new-session -s"
+alias tl="tmux list-sessions"
 
-# Lazy
+# Others
 alias lzg="lazygit"
 alias lzd="lazydocker"
+alias cc="claude --dangerously-skip-permissions"
