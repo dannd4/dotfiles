@@ -1,7 +1,10 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.eslint" },
+  { import = "astrocommunity.pack.prettier" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.lua" },
@@ -9,8 +12,6 @@ return {
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.pack.mdx" },
   { import = "astrocommunity.pack.docker" },
-
-  { import = "astrocommunity.completion.avante-nvim" },
 
   { import = "astrocommunity.lsp.ts-error-translator-nvim" },
 
@@ -28,6 +29,8 @@ return {
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.git.gitlinker-nvim" },
 
+  { import = "astrocommunity.media.image-nvim" },
+  { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.split-and-window.windows-nvim" },
   { import = "astrocommunity.indent.mini-indentscope" },
   { import = "astrocommunity.search.grug-far-nvim" },

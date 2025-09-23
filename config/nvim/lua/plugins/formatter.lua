@@ -18,13 +18,13 @@ local has_biome = function(bufnr)
 end
 
 local biome_format_filetypes =
-  { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "vue", "css" }
+  { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "css" }
 
 return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "biome" })
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed or {}, { "biome" })
     end,
   },
   {
