@@ -2,15 +2,28 @@ local wezterm = require("wezterm")
 
 local act = wezterm.action
 local gui = wezterm.gui
-local mux = wezterm.mux
 
 local function is_vim(pane)
-	return pane:get_user_vars().IS_NVIM == "true" or pane:get_user_vars().WEZTERM_IN_TMUX == "1"
+	return pane:get_user_vars().IS_NVIM == "true"
 end
 
 local function is_tmux(pane)
 	return pane:get_user_vars().WEZTERM_IN_TMUX == "1"
 end
+
+wezterm.on("user-var-changed", function(window, pane)
+	local overrides = window:get_config_overrides() or {}
+
+	if is_tmux(pane) then
+		if not overrides.leader then
+			overrides.leader = { key = "_", mods = "CTRL|SHIFT|ALT", timeout_milliseconds = 1000 }
+		end
+	elseif overrides.leader then
+		overrides.leader = nil
+	end
+
+	window:set_config_overrides(overrides)
+end)
 
 local function split_nav(resize_or_move, key, direction)
 	return {
@@ -18,7 +31,7 @@ local function split_nav(resize_or_move, key, direction)
 		mods = resize_or_move == "resize" and "META" or "CTRL",
 		action = wezterm.action_callback(function(win, pane)
 			if is_vim(pane) or is_tmux(pane) then
-				-- pass the keys through to vim/nvim/tmux
+				-- pass the keys through to nvim/tmux
 				win:perform_action(
 					{ SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" } },
 					pane
@@ -37,7 +50,7 @@ end
 local M = {}
 
 function M.options(config)
-	config.leader = { key = ",", mods = "CTRL", timeout_milliseconds = 1000 }
+	config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 	config.keys = {
 		{ key = ".", mods = "LEADER", action = wezterm.action.ShowLauncher },
@@ -45,35 +58,6 @@ function M.options(config)
 			key = "a",
 			mods = "LEADER|CTRL",
 			action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
-		},
-
-		-- ==================== WORKSPACES ====================
-		{
-			key = "a",
-			mods = "LEADER",
-			action = act.AttachDomain("unix"),
-		},
-		{
-			key = "d",
-			mods = "LEADER",
-			action = act.DetachDomain({ DomainName = "unix" }),
-		},
-		{
-			key = "s",
-			mods = "LEADER",
-			action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
-		},
-		{
-			key = "$",
-			mods = "LEADER|SHIFT",
-			action = act.PromptInputLine({
-				description = "Enter new name for session",
-				action = wezterm.action_callback(function(window, pane, line)
-					if line then
-						mux.rename_workspace(window:mux_window():get_workspace(), line)
-					end
-				end),
-			}),
 		},
 
 		-- ==================== TABS ====================
