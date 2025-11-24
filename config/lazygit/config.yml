@@ -1,14 +1,10 @@
 os:
   edit: "nvim {{filename}}"
-  editPreset: "cursor"
-
 promptToReturnFromSubprocess: false
-
 git:
-  paging:
-    colorArg: always
-    pager: delta --paging=never
-
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never
 gui:
   theme:
     activeBorderColor:
@@ -30,6 +26,5 @@ gui:
       - "#c6d0f5"
     searchingActiveBorderColor:
       - "#e5c890"
-
   authorColors:
     "*": "#babbf1"

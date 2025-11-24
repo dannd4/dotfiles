@@ -13,7 +13,8 @@
                     "bundle_identifiers": [
                       "^com\\.github\\.wez\\.wezterm$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.warp\\.Warp-Stable$"
+                      "^dev\\.warp\\.Warp-Stable$",
+                      "^dev\\.zed\\.Zed$"
                     ],
                     "type": "frontmost_application_unless"
                   }
@@ -34,7 +35,8 @@
                     "bundle_identifiers": [
                       "^com\\.github\\.wez\\.wezterm$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.warp\\.Warp-Stable$"
+                      "^dev\\.warp\\.Warp-Stable$",
+                      "^dev\\.zed\\.Zed$"
                     ],
                     "type": "frontmost_application_unless"
                   }
@@ -55,7 +57,8 @@
                     "bundle_identifiers": [
                       "^com\\.github\\.wez\\.wezterm$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.warp\\.Warp-Stable$"
+                      "^dev\\.warp\\.Warp-Stable$",
+                      "^dev\\.zed\\.Zed$"
                     ],
                     "type": "frontmost_application_unless"
                   }
@@ -76,7 +79,8 @@
                     "bundle_identifiers": [
                       "^com\\.github\\.wez\\.wezterm$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.warp\\.Warp-Stable$"
+                      "^dev\\.warp\\.Warp-Stable$",
+                      "^dev\\.zed\\.Zed$"
                     ],
                     "type": "frontmost_application_unless"
                   }
