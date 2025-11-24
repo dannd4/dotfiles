@@ -12,6 +12,7 @@ return {
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.pack.mdx" },
   { import = "astrocommunity.pack.docker" },
+  { import = "astrocommunity.pack.go" },
 
   { import = "astrocommunity.lsp.ts-error-translator-nvim" },
 
@@ -29,7 +30,6 @@ return {
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.git.gitlinker-nvim" },
 
-  { import = "astrocommunity.media.image-nvim" },
   { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.split-and-window.windows-nvim" },
   { import = "astrocommunity.indent.mini-indentscope" },

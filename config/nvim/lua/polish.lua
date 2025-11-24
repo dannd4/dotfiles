@@ -1,4 +1,11 @@
-local home_dir = "/Users/dan"
-local node_bin = "/.volta/tools/image/node/22.19.0/bin"
+-- find uv python path dynamically
+local uv_python = vim.fn.systemlist("uv python find")[1]
+local uv_python_dir = uv_python:match "(.*/)"
 
-vim.cmd("let $PATH = '" .. home_dir .. node_bin .. ":' . $PATH")
+-- find node path dynamically
+local node_bin = vim.fn.systemlist("brew --prefix node")[1]
+local node_dir = node_bin and (node_bin .. "/bin/") or ""
+
+vim.cmd("let $PATH = '" .. node_dir .. ":' . '" .. uv_python_dir .. ":' . $PATH")
+vim.g.python3_host_prog = uv_python
+vim.g.copilot_node_command = node_bin

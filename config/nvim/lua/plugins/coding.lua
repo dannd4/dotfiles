@@ -22,6 +22,9 @@ return {
     config = true,
     opts = {
       terminal_cmd = "~/.local/bin/claude", -- Point to local installation
+      diff_opts = {
+        keep_terminal_focus = true,
+      },
     },
     keys = {
       { "<leader>a", nil, desc = "AI/Claude Code" },
@@ -56,8 +59,6 @@ return {
           accept = false,
         },
       },
-      copilot_model = "gpt-41-copilot",
-      copilot_node_command = vim.fn.expand "$HOME" .. "/.volta/tools/image/node/22.19.0/bin/node",
     },
     specs = {
       {
