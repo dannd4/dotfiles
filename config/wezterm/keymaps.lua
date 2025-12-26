@@ -15,10 +15,9 @@ wezterm.on("user-var-changed", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
 
 	if is_tmux(pane) then
-		if not overrides.leader then
-			overrides.leader = { key = "_", mods = "CTRL|SHIFT|ALT", timeout_milliseconds = 1000 }
-		end
-	elseif overrides.leader then
+		overrides.leader = { key = "_", mods = "CTRL|SHIFT|ALT", timeout_milliseconds = 1000 }
+	elseif not is_vim(pane) and overrides.leader then
+		-- only clear override when not in tmux AND not in nvim
 		overrides.leader = nil
 	end
 
