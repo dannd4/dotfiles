@@ -22,3 +22,10 @@ tags
 # Node
 node_modules
 npm-debug.log
+.node-version
+
+.claude/settings.local.json
+.serena
+
+# PP
+env_files/dan_pp.env

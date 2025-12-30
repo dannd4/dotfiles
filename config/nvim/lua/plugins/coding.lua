@@ -22,6 +22,9 @@ return {
     config = true,
     opts = {
       terminal_cmd = "~/.local/bin/claude", -- Point to local installation
+      terminal = {
+        provider = "none",
+      },
       diff_opts = {
         keep_terminal_focus = true,
       },

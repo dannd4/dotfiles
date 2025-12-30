@@ -11,6 +11,8 @@ brew install mackup
 brew install dotbot
 brew install wget
 brew install git
+brew install gh
+brew install git-delta
 brew install neovim
 brew install tmux
 brew install lazygit
@@ -20,7 +22,7 @@ brew install gnu-sed
 brew install coreutils
 brew install atuin
 brew install bat
-brew install jq
+brew install fx
 brew install ripgrep
 brew install fzf
 brew install ack
@@ -29,19 +31,21 @@ brew install ag
 brew install eza
 brew install tree
 brew install starship
-brew install volta
 brew install go
 brew install sqlite
 brew install kubectx
 brew install kubernetes-cli
 brew install derailed/k9s/k9s
 brew install helm
-brew install terraform
-brew install pyenv
 brew install libpq
 brew install luarocks
 brew install telnet
 brew install zoxide
+brew install imagemagick
+brew install node
+brew install fnm
+brew install yarn
+brew install pnpm
 
 # Brew Casks
 brew install --cask google-chrome
@@ -50,7 +54,6 @@ brew install --cask telegram
 brew install --cask discord
 brew install --cask wezterm
 brew install --cask visual-studio-code
-brew install --cask evkey
 brew install --cask notion
 brew install --cask postman
 brew install --cask obs
@@ -59,4 +62,4 @@ brew install --cask spotify
 brew install --cask karabiner-elements
 brew install --cask notunes
 brew install --cask jordanbaird-ice
-Brew install --cask tailscale
+brew install --cask orbstack

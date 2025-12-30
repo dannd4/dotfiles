@@ -71,7 +71,7 @@ return {
             args = {
               "check",
               "--write",
-              "--skip-parse-errors",
+              -- "--skip-parse-errors",
               "--stdin-file-path",
               "$FILENAME",
             },

@@ -1,5 +1,3 @@
-# Kiro CLI pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
 # Performance optimizations
 DISABLE_AUTO_UPDATE="true"
 DISABLE_MAGIC_FUNCTIONS="true"
@@ -52,6 +50,3 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"
-
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

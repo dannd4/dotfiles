@@ -14,7 +14,7 @@ return {
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.go" },
 
-  { import = "astrocommunity.lsp.ts-error-translator-nvim" },
+  -- { import = "astrocommunity.lsp.ts-error-translator-nvim" },
 
   { import = "astrocommunity.editing-support.yanky-nvim" },
   { import = "astrocommunity.editing-support.mini-splitjoin" },
