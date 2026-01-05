@@ -1,5 +1,3 @@
-os:
-  edit: "nvim {{filename}}"
 promptToReturnFromSubprocess: false
 git:
   pagers:
