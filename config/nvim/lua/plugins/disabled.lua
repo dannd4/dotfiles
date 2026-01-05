@@ -1,5 +1,4 @@
 return {
-  { "AstroNvim/astrotheme", enabled = false },
-  { "stevearc/resession.nvim", enabled = false },
-  { "vuki656/package-info.nvim", enabled = false },
+  { "akinsho/bufferline.nvim", enabled = false },
+  { "folke/tokyonight.nvim", enabled = false },
 }
