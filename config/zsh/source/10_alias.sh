@@ -24,12 +24,9 @@ if type eza &>/dev/null; then
   alias grep="grep --color=auto"
 fi
 
-# Tmux
-alias ta="tmux attach -t"
-alias ts="tmux new-session -s"
-alias tl="tmux list-sessions"
+# Zellij
+alias ze="zellij"
 
 # Others
 alias lzg="lazygit"
 alias lzd="lazydocker"
-alias cc="claude --dangerously-skip-permissions"

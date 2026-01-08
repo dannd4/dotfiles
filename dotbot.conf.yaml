@@ -15,7 +15,7 @@
     ~/.config/lazygit: config/lazygit
     ~/.config/nvim: config/nvim
     ~/.config/wezterm: config/wezterm
-    ~/.config/tmux: config/tmux
+    ~/.config/zellij: config/zellij
     ~/.config/yazi: config/yazi
     ~/.config/starship.toml: config/starship.toml
 
