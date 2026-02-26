@@ -8,4 +8,16 @@ return {
       { "<leader>gx", "<cmd>CodeDiff<cr>", desc = "Code Diff" },
     },
   },
+  {
+    "FabijanZulj/blame.nvim",
+    cmd = "BlameToggle",
+    opts = {},
+    keys = {
+      {
+        "<Leader>gb",
+        "<cmd>BlameToggle<cr>",
+        desc = "Toggle git blame",
+      },
+    },
+  },
 }

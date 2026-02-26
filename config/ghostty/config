@@ -1,9 +1,10 @@
 # --- Typography ---
-font-family = MonaspiceAr Nerd Font
-# font-family = CaskaydiaCove Nerd Font
-# font-family = Comic Code
-# font-family = JetbrainsMono Nerd Font
+font-family = Comic Code
 font-size = 12
+font-style = SemiBold
+font-style-italic = Italic
+font-style-bold = Bold
+font-style-bold-italic = Bold Italic
 font-thicken = true
 adjust-cell-height = 20%
 

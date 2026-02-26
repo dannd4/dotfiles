@@ -1,15 +1,21 @@
-[submodule "vendor/zsh-custom/plugins/git-open"]
-	path = vendor/zsh-custom/plugins/git-open
+[submodule "vendor/zsh-plugins/git-open"]
+	path = vendor/zsh-plugins/git-open
 	url = git@github.com:paulirish/git-open.git
-[submodule "vendor/zsh-custom/plugins/zsh-vi-mode"]
-	path = vendor/zsh-custom/plugins/zsh-vi-mode
+[submodule "vendor/zsh-plugins/zsh-vi-mode"]
+	path = vendor/zsh-plugins/zsh-vi-mode
 	url = git@github.com:jeffreytse/zsh-vi-mode.git
-[submodule "vendor/zsh-custom/plugins/fzf-tab"]
-	path = vendor/zsh-custom/plugins/fzf-tab
+[submodule "vendor/zsh-plugins/fzf-tab"]
+	path = vendor/zsh-plugins/fzf-tab
 	url = git@github.com:Aloxaf/fzf-tab.git
-[submodule "vendor/zsh-custom/plugins/fast-syntax-highlighting"]
-	path = vendor/zsh-custom/plugins/fast-syntax-highlighting
+[submodule "vendor/zsh-plugins/fast-syntax-highlighting"]
+	path = vendor/zsh-plugins/fast-syntax-highlighting
 	url = git@github.com:zdharma-continuum/fast-syntax-highlighting.git
-[submodule "vendor/zsh-custom/plugins/zsh-autosuggestions"]
-	path = vendor/zsh-custom/plugins/zsh-autosuggestions
+[submodule "vendor/zsh-plugins/zsh-autosuggestions"]
+	path = vendor/zsh-plugins/zsh-autosuggestions
 	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule "vendor/dotbot"]
+	path = vendor/dotbot
+	url = https://github.com/anishathalye/dotbot
+[submodule "config/claude"]
+	path = config/claude
+	url = https://github.com/dannd4/superclaude

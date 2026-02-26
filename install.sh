@@ -7,5 +7,4 @@ if [[ ! -d $DOTFILES ]]; then
   cd $DOTFILES || exit 1
 fi
 
-git submodule init
-git submodule update
+git submodule update --init --recursive

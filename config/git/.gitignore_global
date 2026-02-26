@@ -24,8 +24,10 @@ node_modules
 npm-debug.log
 .node-version
 
+# AI tools
 .claude/settings.local.json
-.serena
-
-# PP
-env_files/dan_pp.env
+plans
+.tasks
+.plans
+.planning
+.gitnexus

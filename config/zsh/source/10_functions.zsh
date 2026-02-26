@@ -3,13 +3,8 @@ function mkd() {
   mkdir -p "$@" && cd "$_" || return
 }
 
-function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    builtin cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
+function wtf() {
+  tldr "$@" || run-help "$@" || man "$@" || "$@" --help || curl "cheat.sh/$@"
 }
 
 function uv_poetry_install() {
@@ -18,15 +13,6 @@ function uv_poetry_install() {
   fi
   uv pip install --no-deps -r <(POETRY_WARNINGS_EXPORT=false poetry export --without-hashes --with dev -f requirements.txt)
   poetry install --only-root
-}
-
-# Force Atuin key bindings to take precedence over zsh-vi-mode
-# This needs to be after all plugin initializations
-function zvm_after_init() {
-  # Bind Ctrl+R to Atuin search in all modes
-  bindkey -M emacs '^r' atuin-search
-  bindkey -M viins '^r' atuin-search-viins
-  bindkey -M vicmd '^r' atuin-search
 }
 
 function swe() {
@@ -49,3 +35,13 @@ function swe() {
     fi
   fi
 }
+
+# Force Atuin key bindings to take precedence over zsh-vi-mode
+function zvm_after_init() {
+  # Bind Ctrl+R to Atuin search in all modes
+  bindkey -M emacs '^r' atuin-search
+  bindkey -M viins '^r' atuin-search-viins
+  bindkey -M vicmd '^r' atuin-search
+}
+
+

@@ -1,0 +1,20 @@
+[metadata]
+name = "dotfiles"
+description = "A channel to select from your user's dotfiles"
+requirements = ["fd", "bat"]
+
+[source]
+command = "fd -t f . $HOME/.dotfiles -H -E .git -E vendor"
+
+[preview]
+command = "bat -n --color=always '{}'"
+
+[keybindings]
+enter = "actions:edit"
+ctrl-e = "actions:edit"
+
+[actions.edit]
+description = "Edit the selected dotfile"
+command = "${EDITOR:-vim} '{}'"
+shell = "zsh"
+mode = "execute"

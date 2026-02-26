@@ -1,13 +1,8 @@
 macos:
 	@bash commands/macos_defaults.sh
 
-brew-install:
+brew:
 	@bash commands/homebrew.sh
 
 link:
-	dotbot -c dotbot.conf.yaml
-
-mackup:
-	mackup restore --force
-
-
+	@bash vendor/dotbot/bin/dotbot -c dotbot.conf.yaml

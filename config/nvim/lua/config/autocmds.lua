@@ -6,3 +6,9 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+vim.api.nvim_create_user_command("WipeReg", function()
+  for i = 34, 122 do
+    pcall(vim.fn.setreg, string.char(i), {})
+  end
+end, {})

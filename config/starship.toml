@@ -4,14 +4,12 @@
 palette = "catppuccin_frappe"
 
 [character]
-# Note the use of Catppuccin color 'maroon'
 success_symbol = "[❯](maroon)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
 [directory]
 truncation_length = 4
-# Catppuccin 'lavender'
 style = "bold lavender"
 
 [palettes.catppuccin_frappe]

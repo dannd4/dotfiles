@@ -15,6 +15,9 @@ autocrlf = false
 ignorecase = false
 excludesfile = ~/.gitignore_global
 
+[fetch]
+prune = true
+
 [push]
 default = upstream
 
