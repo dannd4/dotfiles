@@ -1,0 +1,32 @@
+# --- Typography ---
+font-family = MonaspiceAr Nerd Font
+# font-family = CaskaydiaCove Nerd Font
+# font-family = Comic Code
+# font-family = JetbrainsMono Nerd Font
+font-size = 12
+font-thicken = true
+adjust-cell-height = 20%
+
+# --- Theme and Colors ---
+theme = Catppuccin Frappe
+
+# --- Window and Appearance ---
+maximize = true
+macos-titlebar-style = hidden
+
+# --- Cursor ---
+cursor-style = bar
+cursor-style-blink = true
+cursor-opacity = 0.8
+
+# --- Mouse ---
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+
+# --- MacOS Specific ---
+macos-option-as-alt = true
+
+# --- Keybindings ---
+keybind = shift+enter=text:\x1b\r
+keybind = alt+left=unbind
+keybind = alt+right=unbind
