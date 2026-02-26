@@ -14,15 +14,13 @@
     ~/.config/karabiner: config/karabiner
     ~/.config/lazygit: config/lazygit
     ~/.config/nvim: config/nvim
-    ~/.config/wezterm: config/wezterm
+    ~/.config/ghostty: config/ghostty
+    ~/.config/tmux: config/tmux
     ~/.config/zellij: config/zellij
     ~/.config/yazi: config/yazi
     ~/.config/starship.toml: config/starship.toml
 
     # Others
-    ~/.mackup: config/mackup/.mackup
-    ~/.mackup.cfg: config/mackup/.mackup.cfg
     ~/.gitconfig: config/git/.gitconfig
     ~/.gitignore_global: config/git/.gitignore_global
     ~/.zshrc: config/zsh/.zshrc
-    ~/.warp: config/warp

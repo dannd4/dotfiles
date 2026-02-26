@@ -6,8 +6,3 @@ brew-install:
 
 link:
 	dotbot -c dotbot.conf.yaml
-
-mackup:
-	mackup restore --force
-
-
