@@ -5,8 +5,7 @@
 local map = vim.keymap.set
 
 map("n", "<S-u>", "<C-r>", { desc = "Redo" })
-map("n", "<S-h>", "^", { desc = "Jump to start line" })
-map("n", "<S-l>", "$", { desc = "Jump to end line" })
+map("n", "<leader>q", "<cmd>:bd<cr>", { desc = "Quit Window" })
 
 map({ "i", "s" }, "<C-h>", "<Left>", { desc = "Move cursor left" })
 map({ "i", "s" }, "<C-j>", "<Down>", { desc = "Move cursor down" })

@@ -1,11 +1,10 @@
-local term = vim.trim((vim.env.TERM_PROGRAM or ""):lower())
-local mux = term == "tmux" or term == "wezterm"
+local utils = require("utils")
 
 return {
   {
     "mrjones2014/smart-splits.nvim",
     lazy = true,
-    event = mux and "VeryLazy" or nil, -- load early if mux detected
+    event = utils.is_tmux and "VeryLazy" or nil, -- load early if mux detected
     keys = {
       {
         "<C-h>",
@@ -64,6 +63,10 @@ return {
         desc = "Resize split right",
       },
     },
-    opts = { ignored_filetypes = { "nofile", "quickfix", "qf", "prompt" }, ignored_buftypes = { "nofile" } },
+    opts = {
+      ignored_filetypes = { "nofile", "quickfix", "qf", "prompt" },
+      ignored_buftypes = { "nofile" },
+      zellij_move_focus_or_tab = true,
+    },
   },
 }

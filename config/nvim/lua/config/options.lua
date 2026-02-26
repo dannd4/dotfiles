@@ -13,3 +13,5 @@ opt.listchars = {
   nbsp = "␣",
   leadmultispace = "│ ",
 }
+
+vim.o.autoread = true

@@ -16,4 +16,29 @@ return {
     event = "VeryLazy",
     opts = {},
   },
+  {
+    "folke/sidekick.nvim",
+    opts = {
+      cli = {
+        mux = {
+          backend = "tmux",
+          enabled = true,
+        },
+      },
+    },
+    keys = {
+      {
+        "<leader>aa",
+        function()
+          require("sidekick.cli").toggle()
+        end,
+        desc = "Sidekick Toggle CLI",
+      },
+    },
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = { { "nvim-neotest/neotest-jest" } },
+    opts = { adapters = { "neotest-jest" } },
+  },
 }

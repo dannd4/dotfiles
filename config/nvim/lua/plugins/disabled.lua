@@ -1,4 +1,5 @@
 return {
-  { "akinsho/bufferline.nvim", enabled = false },
-  { "folke/tokyonight.nvim", enabled = false },
+  -- { "folke/tokyonight.nvim", enabled = false },
+  { "markdown-preview.nvim", enabled = false },
+  { "folke/persistence.nvim", enabled = false },
 }
