@@ -1,9 +1,20 @@
-# Performance optimizations
-DISABLE_AUTO_UPDATE="true"
-DISABLE_MAGIC_FUNCTIONS="true"
-DISABLE_COMPFIX="true"
+export DOTFILES=~/.dotfiles
+export TERM="xterm-256color"
+export EDITOR='nvim'
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export PATH=$HOME/.local/bin:$PATH
 
-# Cache completions aggressively
+for helper in "$DOTFILES"/config/zsh/source/*.zsh; do
+  source "$helper"
+done
+
+# Machine-specific config
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# cache completions aggressively
 autoload -Uz compinit
 if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
   compinit
@@ -11,42 +22,16 @@ else
   compinit -C
 fi
 
-export DOTFILES=~/.dotfiles
-export ZSH=$DOTFILES/vendor/oh-my-zsh
-export ZSH_CUSTOM=$DOTFILES/vendor/zsh-custom
-
-export EDITOR='nvim'
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-
-export GOPATH="$HOME/.go"
-export PATH=$GOPATH/bin:$PATH
-
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
-
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH=$PNPM_HOME:$PATH
-
-plugins=(
-  kubectl
-  git-open
-  zsh-vi-mode
-  zsh-syntax-highlighting
-)
-
-source $ZSH/oh-my-zsh.sh
-
-for file in $DOTFILES/config/zsh/source/*; do
-  source "$file"
+PLUGINS_DIR="$DOTFILES/vendor/zsh-custom/plugins"
+for plugin in $PLUGINS_DIR/**/*.plugin.zsh; do
+  source "$plugin"
 done
 
-eval "$(fnm env --use-on-cd --shell zsh)"
+source <(fzf --zsh)
+
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"
+
+# Machine-specific post-compinit config
+[[ -f ~/.zshrc.post ]] && source ~/.zshrc.post

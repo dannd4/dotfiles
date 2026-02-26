@@ -27,6 +27,11 @@ fi
 # Zellij
 alias ze="zellij"
 
+# Tmux
+alias ta="tmux attach -t"
+alias ts="tmux new-session -s"
+alias tl="tmux list-sessions"
+
 # Others
 alias lzg="lazygit"
 alias lzd="lazydocker"

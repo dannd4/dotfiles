@@ -1,6 +1,3 @@
-[submodule "vendor/oh-my-zsh"]
-	path = vendor/oh-my-zsh
-	url = git@github.com:ohmyzsh/ohmyzsh.git
 [submodule "vendor/zsh-custom/plugins/git-open"]
 	path = vendor/zsh-custom/plugins/git-open
 	url = git@github.com:paulirish/git-open.git

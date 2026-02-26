@@ -2,8 +2,8 @@
 name = dan.nguyen
 email = dannd496@gmail.com
 
-[includeIf "gitdir:~/workspace/pperform/"]
-path = ~/workspace/pperform/.gitconfig
+[include]
+path = ~/.gitconfig_local
 
 [color]
 ui = true
